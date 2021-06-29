@@ -1,16 +1,16 @@
 
 <!doctype html>
 <html lang="en">
-{% load static  %}
   <head>
+    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Shyam Pandey</title>
+    <title>Shyam' Blog</title>
 
-    
+
 
 
 
@@ -23,15 +23,15 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href ="{% url 'home' %}">Shyam Pandey</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Shyam Pandey</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
        <div class="navbar-nav ms-auto">
          <a class="nav-link"  href="https://twitter.com/ShyamPa36469389">Twitter</a>
-         <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-         <a class="nav-link" href="{% url 'allblog' %}">Blog</a>
+         <a class="nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+         <a class="nav-link active " href="{% url 'allblog' %}">Blog</a>
         </div>
       </div>
     </div>
@@ -39,39 +39,28 @@
 </header>
 
 <main>
+  <div class="container">
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light"  >Hi I am Shyam Pandey.</h1>
-        <p class="lead text-muted">Hey, My self Shyam and love to make django websites.It's the thrill of handling the request that the people want!</p>
-        <p>
-          <a href="mailto:shyampandey581995@gmail.com" class="btn btn-primary my-2">Email Me</a>
-        </p>
+  <h1 class="text-center pt-3">Wellcome to Shyam's Blog</h1>
+  <br />
+  <br />
+  <h2>Latest Posts</h2>
+  <hr />
 
-        <img class="img-fluid"  src="{% static 'shyam.jpg' %}" height=200 width="=200" />
-      </div>
-    </div>
-  </section>
+  {% for blog in blogs.all %}
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+  <a href="{% url 'detail' blog.id %}"><h3>{{blog.title}}</h3></a>
+  {{blog.pub_date_pretty}}
+  <br />
+  <img class="img-fluid" src="{{ blog.image.url }}" height=200 width=200 ></img>
+  <<br/>
+  <p>{{blog.summary}}</p>
+  {% endfor %}
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for job in jobs.all %}
-        <div class="col">
-          <div class="card shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}" ></svg>
 
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
   </div>
+
+
 </main>
 
 <footer class="text-muted py-5">
